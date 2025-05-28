@@ -9,6 +9,7 @@ import Register from "../Pages/Register";
 import HomeLayout from "../Pages/HomeChildren/HomeLayout";
 import PrivateRoute from "../Provider/PrivateRoute";
 import CardDetails from "../Components/CardDetails";
+import UpdateMyCampaign from "../Components/UpdateMyCampaign";
 
 
 const router = createBrowserRouter([
@@ -21,14 +22,14 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <HomeLayout></HomeLayout>,
-                loader: () => fetch('http://localhost:5500/cardsHome'),
+                loader: () => fetch('https://crowdcube-server-site-gamma.vercel.app/cardsHome'),
             },
 
             // they are deferent pages 
             {
                 path: 'allCampaign',
                 element: <ALLCampaign></ALLCampaign>,
-                loader: () => fetch('http://localhost:5500/cards')
+                loader: () => fetch('https://crowdcube-server-site-gamma.vercel.app/cards')
 
             },
             {
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
                     <PrivateRoute>
                         <MyCampaign></MyCampaign>
                     </PrivateRoute>,
-                loader: () => fetch('http://localhost:5500/details')
+                loader: () => fetch('https://crowdcube-server-site-gamma.vercel.app/details')
 
             },
             {
@@ -52,7 +53,8 @@ const router = createBrowserRouter([
                 element:
                     <PrivateRoute>
                         <MyDonations></MyDonations>
-                    </PrivateRoute>
+                    </PrivateRoute>,
+                loader: () => fetch('https://crowdcube-server-site-gamma.vercel.app/cards')
             },
         ]
 
@@ -71,7 +73,14 @@ const router = createBrowserRouter([
             <PrivateRoute>
                 <CardDetails></CardDetails>
             </PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5500/cards/${params.id}`)
+        loader: ({ params }) => fetch(`https://crowdcube-server-site-gamma.vercel.app/cards/${params.id}`)
+    },
+    {
+        path: '/update/:id',
+        element: <UpdateMyCampaign></UpdateMyCampaign>,
+        loader: ({ params }) => fetch(`https://crowdcube-server-site-gamma.vercel.app/details/${params.id}`)
+
     }
+
 ])
 export default router;

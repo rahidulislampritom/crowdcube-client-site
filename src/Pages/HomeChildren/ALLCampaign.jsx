@@ -6,9 +6,9 @@ const ALLCampaign = () => {
     // console.log(allCardsData);
     return (
         <div>
-            <h2>Number of campaign Card : {allCardsData.length}</h2>
+            <h2 className="text-4xl font-medium py-4">Total Number of Campaign : {allCardsData.length}</h2>
 
-            <div className="md:grid grid-cols-3">
+            <div className="md:grid grid-cols-3 gap-4 space-y-3 md:space-y-0">
                 {
                     allCardsData.map((singleCardData, index) => <Card key={index} singleCardData={singleCardData}></Card>)
                 }

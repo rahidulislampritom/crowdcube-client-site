@@ -1,8 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
+import { AiFillEye } from "react-icons/ai";
+import { IoEyeOff } from "react-icons/io5";
 
 const Register = () => {
 
@@ -34,8 +37,12 @@ const Register = () => {
         userSignUp(email, password)
             .then((result) => {
                 // console.log(result.user)
-                alert('signup successful')
-
+                Swal.fire({
+                    title: 'Signup successful!',
+                    text: 'Do you want to continue',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                })
                 setUser(result.user)
                 // update name photo URL fireBase  start
                 userProfileUpdate(
@@ -49,17 +56,17 @@ const Register = () => {
                         // profile update
                         navigate('/')
                     })
-                    .catch((err) => {
-                        console.log('update user error', err)
+                    .catch(() => {
+                        // console.log('update user error', err)
                     })
                 // update name photo URL fireBase  end
 
             })
-            .catch((err) => {
-                console.log('signUp Error', err.message)
+            .catch(() => {
+                // console.log('signUp Error', err.message)
             })
 
-        fetch('http://localhost:5500/users', {
+        fetch('https://crowdcube-server-site-gamma.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -68,17 +75,19 @@ const Register = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log('users signup', data)
+                setUser(data)
             })
 
 
         form.reset()
     }
+    const [passIcon, setPassIcon] = useState(false)
+
     return (
         <div className="max-w-7xl mx-auto">
             <Navbar></Navbar>
-            <div>
-                <div className="hero bg-base-200 min-h-screen">
+            <div className="pb-10">
+                <div className="hero bg-base-200 pt-10">
                     <div className="hero-content flex-col lg:flex-row-reverse">
                         <div className="card bg-base-100 w-full md:min-w-xl shrink-0 shadow-2xl p-3">
                             <h1 className="text-5xl font-bold text-center">Register now!</h1>
@@ -96,9 +105,23 @@ const Register = () => {
                                         <label className="label">Email</label>
                                         <input name="email" type="email" className="input w-full" placeholder="Email" />
                                     </fieldset>
-                                    <fieldset className="fieldset">
+                                    <fieldset className="fieldset ">
                                         <label className="label">Password</label>
-                                        <input name="password" type="password" className="input w-full" placeholder="Password" />
+                                        {
+                                            passIcon
+                                                ? <input name="password" type="text" className="input w-full" placeholder="Password" />
+                                                : <input name="password" type="password" className="input w-full " placeholder="Password" />
+                                        }
+
+                                        <div className="absolute  bottom-40 right-12 cursor-pointer z-1" onClick={() => setPassIcon(!passIcon)}>
+                                            {
+                                                passIcon
+                                                    ? <AiFillEye className="text-2xl " />
+                                                    : <IoEyeOff className=" text-2xl " />
+                                            }
+
+                                        </div>
+
                                     </fieldset>
                                     <fieldset className="fieldset">
                                         <button className="btn btn-neutral mt-4">SignUp</button>
@@ -109,6 +132,7 @@ const Register = () => {
                         </div>
                     </div>
                 </div>
+
             </div>
             <Footer></Footer>
         </div>

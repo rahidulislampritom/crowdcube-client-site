@@ -10,7 +10,7 @@ const Navbar = () => {
     const navigate = useNavigate()
     const { user, userSignOut } = useContext(AuthContext);
 
-    console.log(user)
+    // console.log(user)
 
     const handleUsersLogOut = () => {
         userSignOut()
@@ -29,17 +29,17 @@ const Navbar = () => {
     }
 
     const links = <>
-        <NavLink to={'/'}><li className="text-lg ">Home</li></NavLink>
-        <NavLink to={'/allCampaign'}><li className="text-lg ">All Campaign</li></NavLink>
-        <NavLink to={'/addNewCampaign'}><li className="text-lg ">Add New Campaign</li></NavLink>
-        <NavLink to={'/myCampaign'}><li className="text-lg ">My Campaign</li></NavLink>
-        <NavLink to={'/myDonations'}><li className="text-lg ">My Donations</li></NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'underline' : ''} to={'/'}><li className="text-lg ">Home</li></NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'underline' : ''} to={'/allCampaign'}><li className="text-lg ">All Campaign</li></NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'underline' : ''} to={'/addNewCampaign'}><li className="text-lg ">Add New Campaign</li></NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'underline' : ''} to={'/myCampaign'}><li className="text-lg ">My Campaign</li></NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'underline' : ''} to={'/myDonations'}><li className="text-lg ">My Donations</li></NavLink>
     </>
 
     const logRes = <>
-        <NavLink to={'/login'}><li className="text-lg font-semibold btn">Login</li></NavLink>
+        <NavLink className={({ isActive }) => isActive ? ' btn-accent' : ''} to={'/login'}><li className="text-lg font-semibold btn">Login</li></NavLink>
 
-        <NavLink to={'/register'}><li className="text-lg font-semibold btn">Register</li></NavLink>
+        <NavLink className={({ isActive }) => isActive ? ' btn-accent' : ''} to={'/register'}><li className="text-lg font-semibold btn">Register</li></NavLink>
     </>
 
 
@@ -50,7 +50,7 @@ const Navbar = () => {
     const [showLogout, setShowLogout] = useState(false);
 
     return (
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto pb-6">
             <div className="navbar bg-base-100 shadow-sm">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -80,16 +80,17 @@ const Navbar = () => {
                 <div className="navbar-end md:gap-2">
                     {
                         user
-                            ? <div
+                            ? <div className="w-16 h-16 "
                                 onMouseEnter={() => setShowLogout(true)}
                                 onMouseLeave={() => setShowLogout(false)}>
 
 
-                                <img className="w-16 h-16 rounded-full object-cover " src={user.photoURL} alt="" />
+                                <img className=" size-full object-cover rounded-full" src={user.photoURL} alt="" />
 
                                 {showLogout && (
-                                    <div>
-                                        <section className="absolute">
+                                    <div className="relative">
+                                        <section className="absolute -right-3">
+                                            <h2 className="w-30">{user.displayName}</h2>
                                             {logOut}
                                         </section>
                                     </div>

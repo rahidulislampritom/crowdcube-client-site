@@ -2,21 +2,21 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 
 const Card = ({ singleCardData }) => {
-    
+
     // changing date formation using moment
     const isoDate = singleCardData.deadline;
     const formattedDate = moment(isoDate).format("DD MMMM YYYY")
 
 
-    const { campaignType, description, photo, title, _id} = singleCardData;
+    const { campaignType, description, photo, title, _id } = singleCardData;
     return (
-        <div className="max-w-7xl ">
-            <div className="hero bg-base-200">
-                <div className="hero-content flex-col ">
+        <div className="max-w-7xl bg-base-300 mx auto  rounded-lg">
+            <div className="hero rounded-lg">
+                <div className="hero-content flex-col">
 
                     <img
                         src={photo}
-                        className=" rounded-lg shadow-2xl min-w-xs h-[300px]"
+                        className=" rounded-lg shadow-2xl lg:h-80 md:h-52"
                     />
 
                     <div>

@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import moment from "moment";
+import Swal from 'sweetalert2'
 
 const CardDetails = () => {
 
@@ -37,18 +38,19 @@ const CardDetails = () => {
 
 
     const handleCardDetailsUserNameEmailData = () => {
-        fetch('http://localhost:5500/details', {
+        fetch('https://crowdcube-server-site-gamma.vercel.app/details', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(allDataCardDetails)
         })
-            .then((result) => {
-                console.log(result.user);
-            })
-            .catch((err) => {
-                console.log(err.message);
+            .then(res => res.json())
+            .then(() => {
+                Swal.fire({
+                    title: 'Donate Successful!',
+                    icon: 'Success',
+                })
             })
     }
 
@@ -72,7 +74,7 @@ const CardDetails = () => {
                             <p className="py-1"><span className='text-lg font-medium'>Deadline:</span> {formattedDate}</p>
                             <p className="py-1"><span className='text-lg font-medium'>Email:</span> {email}</p>
                             <p className="py-1"><span className='text-lg font-medium'>Name:</span> {name}</p>
-                            <Link><button onClick={handleCardDetailsUserNameEmailData} className="btn w-full btn-active">Donate</button></Link>
+                            <button onClick={handleCardDetailsUserNameEmailData} className="btn w-full btn-accent">Donate</button>
                         </div>
                     </div>
                 </div>
