@@ -24,14 +24,14 @@ const Banner = () => {
     })
 
     return (
-        <div className='max-w-6xl mx-auto p-2 pb-16'>
+        <div className='max-w-6xl mx-auto p-2 pb-16 pt-10'>
             <AutoplaySlider
                 play={true}
                 cancelOnInteraction={false} // should stop playing on user interaction
                 interval={8000}
-                className='md:h-[550px]'
+                className='md:h-[400px]'
             >
-                <div className=' rounded-2xl md:text-left  text-center' style={{ backgroundImage: `url(${carouselOne})`, borderRadius: '10px', padding: '10px' }}>
+                <div className=' rounded-2xl md:text-left  text-center' style={{ backgroundImage: `url(${carouselOne})`, borderRadius: '10px', padding: '10px', backgroundRepeat: 'no-repeat' }}>
                     <h2 className='text-xl md:text-3xl text-red-500 font-bold md:pb-5 '>Lifting Others, Lifting Ourselves: The Power of Helping People</h2>
                     <p className='text-white lg:w-3xl '>Helping others is more than just an act of kindness—it's a way to uplift the human spirit, both theirs and our own. When we reach out to support someone in need.</p>
                     {/* this is using for animation of typewriter*/}

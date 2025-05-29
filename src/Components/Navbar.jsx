@@ -30,20 +30,19 @@ const Navbar = () => {
     }
 
     const links = <>
-        <NavLink className={({ isActive }) => isActive ? 'underline' : ''} to={'/'}><li className="text-lg ">Home</li></NavLink>
-        <NavLink className={({ isActive }) => isActive ? 'underline' : ''} to={'/allCampaign'}><li className="text-lg ">All Campaign</li></NavLink>
-        <NavLink className={({ isActive }) => isActive ? 'underline' : ''} to={'/addNewCampaign'}><li className="text-lg ">Add New Campaign</li></NavLink>
-        <NavLink className={({ isActive }) => isActive ? 'underline' : ''} to={'/myCampaign'}><li className="text-lg ">My Campaign</li></NavLink>
-        <NavLink className={({ isActive }) => isActive ? 'underline' : ''} to={'/myDonations'}><li className="text-lg ">My Donations</li></NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'btn btn-active' : ''} to={'/'}><li className="text-lg ">Home</li></NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'btn btn-active' : ''} to={'/allCampaign'}><li className="text-lg ">All Campaign</li></NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'btn btn-active' : ''} to={'/addNewCampaign'}><li className="text-lg ">Add New Campaign</li></NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'btn btn-active' : ''} to={'/myCampaign'}><li className="text-lg ">My Campaign</li></NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'btn btn-active' : ''} to={'/myDonations'}><li className="text-lg ">My Donations</li></NavLink>
         {
             themeController.pathname === '/' ? <input type="checkbox" value="dark" className="toggle theme-controller " /> : ''
         }
     </>
 
     const logRes = <>
-        <NavLink className={({ isActive }) => isActive ? ' btn-accent' : ''} to={'/login'}><li className="text-lg font-semibold btn">Login</li></NavLink>
-
         <NavLink className={({ isActive }) => isActive ? ' btn-accent' : ''} to={'/register'}><li className="text-lg font-semibold btn">Register</li></NavLink>
+        <NavLink className={({ isActive }) => isActive ? ' btn-accent' : ''} to={'/login'}><li className="text-lg font-semibold btn">Login</li></NavLink>
     </>
 
 
@@ -62,7 +61,7 @@ const Navbar = () => {
 
 
     return (
-        <div className="pb-6">
+        <div className="">
             <div className="navbar bg-base-100 shadow-sm">
 
                 <div className="navbar-start">
@@ -80,6 +79,8 @@ const Navbar = () => {
                             </div>
                         </ul>
                     </div>
+
+
                     <div className=" h-20 w-3xs md:flex hidden">
 
                         <img src={logo} alt="" className="size-full object-cover" /><br />
@@ -94,6 +95,7 @@ const Navbar = () => {
                             {links}
                         </div>
                     </ul>
+
                 </div>
 
                 <div className="navbar-end md:gap-2">
@@ -115,7 +117,7 @@ const Navbar = () => {
                                     </div>
                                 )}
                             </div>
-                            : <div>
+                            : <div className="flex  items-center gap-1">
                                 {logRes}
                             </div>
                     }

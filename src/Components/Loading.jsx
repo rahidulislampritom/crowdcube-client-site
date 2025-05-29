@@ -1,14 +1,11 @@
-import Footer from "./Footer";
-import Navbar from "./Navbar";
-
 const Loading = () => {
     return (
-        <div>
-         
-            <h2 className="text-center">
-                <span className="loading loading-spinner loading-xl"></span>
+        <div className="min-h-screen flex items-center justify-center">
+
+            <h2>
+                <span className="loading loading-spinner text-neutral size-16"></span>
             </h2>
-         
+
         </div>
     );
 };

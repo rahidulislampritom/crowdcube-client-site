@@ -10,7 +10,7 @@ const HomeLayout = () => {
         <div className="max-w-7xl mx-auto">
             <Banner></Banner>
           
-            <div className="md:grid grid-cols-3">
+            <div className="md:grid grid-cols-3 gap-5">
                 {
                     allCardData.map((singleCard, index) => <Card key={index} singleCardData={singleCard}></Card>)
                 }
