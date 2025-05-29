@@ -1,5 +1,7 @@
 import moment from "moment";
 import { Link } from "react-router-dom";
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip } from 'react-tooltip'
 
 const Card = ({ singleCardData }) => {
 
@@ -14,11 +16,16 @@ const Card = ({ singleCardData }) => {
             <div className="hero rounded-lg">
                 <div className="hero-content flex-col">
 
-                    <img
-                        src={photo}
-                        className=" rounded-lg shadow-2xl lg:h-80 md:h-52"
-                    />
 
+                    <a data-tooltip-id="my-tooltip" data-tooltip-content={title} data-tooltip-place="start">
+                        <Tooltip id="my-tooltip" />
+                        <img
+                            src={photo}
+                            alt={title} // Good for accessibility
+                            className="rounded-lg shadow-2xl lg:h-80 md:h-52"
+                        />
+
+                    </a>
                     <div>
                         <h1 className="text-2xl font-bold">{title}</h1>
                         <p className="py-1"><span className='text-lg font-medium'>Campaign-Type:</span> {campaignType}</p>

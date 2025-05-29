@@ -7,9 +7,9 @@ const HomeLayout = () => {
     const allCardData = useLoaderData();
     // console.log(allCardData)
     return (
-        <div>
+        <div className="max-w-7xl mx-auto">
             <Banner></Banner>
-
+          
             <div className="md:grid grid-cols-3">
                 {
                     allCardData.map((singleCard, index) => <Card key={index} singleCardData={singleCard}></Card>)

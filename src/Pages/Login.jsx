@@ -6,6 +6,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import Swal from 'sweetalert2'
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
+import { Fade } from "react-awesome-reveal";
 
 const Login = () => {
 
@@ -28,6 +29,13 @@ const Login = () => {
         //     password
         // }
         // console.log(loginValue);
+
+
+
+
+
+
+
 
         // authSignin 
         userSignin(email, password)
@@ -86,7 +94,10 @@ const Login = () => {
             <div className="hero bg-base-200 min-h-screen">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="card bg-base-100 w-full md:min-w-xl shrink-0 shadow-2xl p-3">
-                        <h1 className="text-5xl font-bold text-center">Login now!</h1>
+                        {/* react Awesome reveal  */}
+                        <Fade direction="top-left" >
+                            <h1 className="text-5xl font-bold text-center">Login now!</h1>
+                        </Fade>
                         <div className="card-body">
                             <form onSubmit={handleLoginSubmit}>
                                 <fieldset className="fieldset">
@@ -118,10 +129,14 @@ const Login = () => {
                                     <FcGoogle className="text-2xl" />
                                     Sign in with Google
                                 </button>
+
                             </div>
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
 
             <Footer></Footer>

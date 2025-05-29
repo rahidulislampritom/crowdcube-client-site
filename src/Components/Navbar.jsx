@@ -1,9 +1,9 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from '../assets/logo (1).png';
 import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from 'sweetalert2'
-
+import { useTypewriter, Cursor } from 'react-simple-typewriter'
 
 
 const Navbar = () => {
@@ -11,6 +11,7 @@ const Navbar = () => {
     const { user, userSignOut } = useContext(AuthContext);
 
     // console.log(user)
+    const themeController = useLocation();
 
     const handleUsersLogOut = () => {
         userSignOut()
@@ -34,6 +35,9 @@ const Navbar = () => {
         <NavLink className={({ isActive }) => isActive ? 'underline' : ''} to={'/addNewCampaign'}><li className="text-lg ">Add New Campaign</li></NavLink>
         <NavLink className={({ isActive }) => isActive ? 'underline' : ''} to={'/myCampaign'}><li className="text-lg ">My Campaign</li></NavLink>
         <NavLink className={({ isActive }) => isActive ? 'underline' : ''} to={'/myDonations'}><li className="text-lg ">My Donations</li></NavLink>
+        {
+            themeController.pathname === '/' ? <input type="checkbox" value="dark" className="toggle theme-controller " /> : ''
+        }
     </>
 
     const logRes = <>
@@ -46,14 +50,25 @@ const Navbar = () => {
     const logOut = <>
         <button onClick={handleUsersLogOut} className="text-lg font-semibold btn">Logout</button>
     </>
-
+    // this state using for hover effect on logout image 
     const [showLogout, setShowLogout] = useState(false);
 
+
+    {/* this is using for animation of typewriter  */ }
+    const [text] = useTypewriter({
+        words: [' one has ever become poor by giving'],
+        loop: 0
+    })
+
+
     return (
-        <div className="max-w-7xl mx-auto pb-6">
+        <div className="pb-6">
             <div className="navbar bg-base-100 shadow-sm">
+
                 <div className="navbar-start">
+
                     <div className="dropdown">
+
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
                         </div>
@@ -65,13 +80,17 @@ const Navbar = () => {
                             </div>
                         </ul>
                     </div>
-                    <div className=" h-20 w-2xs md:flex hidden">
-                        <img src={logo} alt="" className="size-full object-cover" />
+                    <div className=" h-20 w-3xs md:flex hidden">
+
+                        <img src={logo} alt="" className="size-full object-cover" /><br />
+
                     </div>
+
                 </div>
+
                 <div className="navbar-center hidden lg:flex max-w-3xl mx-auto">
                     <ul className="menu menu-horizontal px-1">
-                        <div className="flex gap-8">
+                        <div className="flex items-center lg:gap-4">
                             {links}
                         </div>
                     </ul>
@@ -109,7 +128,14 @@ const Navbar = () => {
                     <img src={logo} alt="" className="size-full object-cover" />
                 </div>
 
+
             </div>
+
+            <div className="pt-1 md:hidden">
+                {/* this is using for animation of typewriter for mobile */}
+                <h2 className="text-center text-accent">No {text}</h2>
+            </div>
+
         </div>
     );
 };

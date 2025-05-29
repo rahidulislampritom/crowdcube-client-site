@@ -6,7 +6,7 @@ const ALLCampaign = () => {
     // console.log(allCardsData);
     return (
         <div>
-            <h2 className="text-4xl font-medium py-4">Total Number of Campaign : {allCardsData.length}</h2>
+            <h2 className="text-4xl font-medium pb-6">Total Number of Campaign : {allCardsData.length}</h2>
 
             <div className="md:grid grid-cols-3 gap-4 space-y-3 md:space-y-0">
                 {
